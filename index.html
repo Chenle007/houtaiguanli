@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+    <style>
+        /*设置标题上左外边距*/
+        #projectTitle .projectTitle_text{
+            margin: 21px 0 0 22px;
+            color: #333333;
+        }
+        /*设置标题大小，行高*/
+        #projectTitle .projectTitle_text h2{
+            font-size: 24px;
+            line-height: 25px;
+        }
+        /*设置标题下文组的间距与字体大小*/
+        #projectTitle .projectTitle_text p{
+            font-size: 14px;
+            line-height: 30px;
+            margin: 10px 0 13px 0;
+        }
+        /*设置编辑按钮的大小与间距*/
+        #projectTitle .projectTitle_text i{
+            font-size: 22px;
+            color: #cccccc;
+            margin-left: 30px;
+        }
+        #projectTitle .projectTitle_text span{
+            color: #999999;
+        }
+        /*设置图片位置*/
+        #projectTitle .projectTitle_img{
+            margin:20px 20px 0 0;
+        }
+        /*设置导航按钮的样式*/
+        #projectList .projectList_btns {
+            height: 54px;
+            background: #f1f9fc;
+            border-top: 1px solid #e0eaef;
+            border-bottom: 1px solid #dbe7ed;
+            margin-top: 10px;
+        }
+        /*设置列表的上左边距*/
+        #projectList .projectList_btns ul{
+            margin: 14px 0 0 20px;
+        }
+        #projectList .projectList_btns li{
+            float: left;
+            width: 108px;height: 39px;
+            border: 1px solid #dbe7ed;
+            border-bottom: none;
+            background: #fbfeff;
+            color: #666666;
+            text-align: center;
+            line-height: 39px;
+            margin-right: 12px;
+            border-radius: 5px 5px 0 0;
+            cursor: pointer;
+        }
+        #projectList .projectList_btns .active{
+            color: white;
+            background: #018ffb;
+        }
+        #projectList .projectList_cons{
+            margin: 20px;
+        }
+        #projectList .projectList_cons>div{
+            display: none;
+        }
+        #projectList .projectList_cons>div.show{
+            display: block;
+        }
+        /*设置两个上传按钮样式*/
+        #projectList .zl_upload1,#projectList .zl_upload2{
+            width: 110px;height: 32px;
+            line-height: 32px;text-align: center;
+            font-size: 14px;color: white;
+            border-radius: 5px;cursor: pointer;
+        }
+        /*隐藏按钮的初始样式，用于自定义样式*/
+        #projectList .zl_upload1 input,#projectList .zl_upload2 input{
+            display: none;
+        }
+        /*鼠标经过显示点击手形*/
+        #projectList .zl_upload1 label,#projectList .zl_upload2 label{
+            cursor: pointer;
+        }
+        #projectList .zl_upload1{
+            background: #5fde5c;
+        }
+        #projectList .zl_upload2{
+            background: #34d1ca; margin-left: 20px;
+        }
+        #projectList .icon-icon--{
+            font-size: 20px;
+            position: relative;
+            top: 3px;
+        }
+        #projectList .zl_search{
+            width: 210px;height: 30px;
+            border: 1px #dbe7ed solid;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        #projectList .zl_search input{
+            border: none;
+            width: 177px;height: 100%;
+            color: #999999;
+            font-size: 14px;
+            text-indent: 9px;/*首行缩进*/
+            position: relative;top: -3px;
+            outline: none;
+        }
+        #projectList .zl_search button{
+            width: 32px;height: 32px;
+            border: none;
+            border-left: 1px #dbe7ed solid;
+            background-image: linear-gradient(#fcfdfd,#f1f9fc);
+            cursor: pointer;
+        }
+        #projectList .zl_search i{
+            font-size: 18px;font-weight: bold;
+            color: #a1c6d4;
+        }
+        /*表格样式*/
+        #projectList .zl_table{
+            clear: both;/*清楚浮动*/
+            width: 100%;
+            border: 1px #dbe7ed solid;
+            font-size: 12px;
+            border-collapse: collapse;
+            position: relative; top: 20px; /*增加上边距*/
+        }
+        #projectList .zl_table tr{
+            height: 32px;
+            border-bottom: 1px #e7eff3 solid;
+        }
+        /*鼠标经过改变背景色*/
+        #projectList .zl_table tr:hover{
+            background: #f1f9fc;
+        }
+        #projectList .zl_table th{
+            border-right: 1px #dbe7ed solid;
+            color: #666666; font-weight: normal;
+            text-align: left;
+            text-indent: 12px;
+            background: #f1f9fc;
+        }
+        #projectList .zl_table td{
+            text-indent: 12px;
+        }
+        #projectList .zl_table th:first-child,#projectList .zl_table td:first-child{
+            text-align: center;
+            text-indent: 0;
+        }
+        #projectList .zl_table .icon-word{
+            margin-right: 13px;
+            color: #0173ca;
+        }
+        #projectList .zl_table .icon-xiazai{
+            color: #3da2f0;
+        }
+        #projectList .zl_table .icon-shanchu{
+            color: #d94141;
+        }
+        /*内容底部的样式*/
+        #projectList .zl_footer{
+            height: 70px;
+            border: 1px #dbe7ed solid;
+            border-top: none;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+        /*设置两个按钮的样式*/
+        #projectList .zl_remove,#projectList .zl_download{
+            width: 78px;height: 24px;
+            border: 1px #c9e4f1 solid;
+            border-radius: 3px;
+            background-image: linear-gradient(#f7fcff,#e7f4fa);
+            margin-top: 18px;
+            font-size: 12px;
+            color: #1b84ba;
+            cursor: pointer;
+        }
+        #projectList .zl_remove{
+            margin-right: 15px;
+            margin-left: 22px;
+        }
+        #projectList .zl_page{
+            line-height: 24px;
+            margin: 22px 18px 0 0;
+            font-size: 0;
+        }
+        #projectList .zl_page a{
+            border: 1px #e6e6e6 solid;
+            padding: 6px 9px 0 0;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        #projectList .zl_page a.active{
+            border: 1px #3797e0 solid;
+            background: #42adff;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="header_logo l">
+        <h1 class="l"><img src="img/headlogo.jpg" alt=""></h1>
+        <h2 class="l">正达建筑内部管理平台</h2>
+        </div>
+        <ul class="header_nav r">
+            <li>
+                <i class="iconfont icon-wode"></i>欢迎您，陈乐 管理员
+            </li>
+            <li>
+                <i class="iconfont icon-key"></i><a href="">修改密码</a>
+            </li>
+            <li>
+                <i class="iconfont icon-ai-home"></i><a href="">公司官网</a>
+            </li>
+            <li>
+                <i class="iconfont icon-key icon-fenxiang"></i><a href="">退出</a>
+            </li>
+        </ul>
+    </header>
+    <div id="menu" class="l">
+        <ul>
+            <li class="active">
+                <a href="#">
+                    <i class="iconfont icon-loukongguanli"></i>
+                    <p>项目管理</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="iconfont icon-yonghuxinxi"></i>
+                    <p>用户管理</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="iconfont icon-shezhi"></i>
+                    <p>系统设置</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div id="main">
+        <div class="main_con">
+          <div id="projectTitle" class="clear">
+              <div class="projectTitle_text l">
+                  <h2>青田高湾绿园第一期，第二期工程<i class="iconfont icon-bianji"></i></h2>
+                  <p>
+                      项目编号：<span>CN000157</span>
+                      <br>
+                      项目类型：<span>在建工程</span>
+                      <br>
+                      项目负责人：<span>陈乐</span>
+                      <br>
+                      联系电话：<span>13110100157</span>
+                  </p>
+              </div>
+              <div class="projectTitle_img r">
+                  <img src="img/xs1.jpg" alt="">
+              </div>
+          </div>
+            <div id="projectList">
+               <div class="projectList_btns">
+                   <ul>
+                       <li>视频监控</li>
+                       <li>考勤管理</li>
+                       <li>安全巡查</li>
+                       <li class="active">资料管理</li>
+                   </ul>
+               </div>
+                <div class="projectList_cons">
+                    <div>视频监控</div>
+                    <div>考勤管理</div>
+                    <div>安全巡查</div>
+                    <div class="show">
+                        <div class="zl_upload1 l">
+                            <label>
+                                <input type="file">
+                                <i class="iconfont icon-shangchuan"></i>&nbsp;单个上传
+                            </label>
+                        </div>
+                        <div class="zl_upload2 l">
+                            <label>
+                                <input type="file" multiple>
+                                <i class="iconfont icon-icon--"></i>&nbsp;批量上传
+                            </label>
+                        </div>
+                        <div class="zl_search r"> <!-- 搜索框 -->
+                            <input type="text" placeholder="请输入关键字"><button><i class="iconfont icon-search"></i></button>
+                        </div>
+                        <table class="zl_table">
+                            <thead>
+                            <tr>
+                                <th width="49"><input type="checkbox"></th>
+                                <th>文档名称</th>
+                                <th width="167">文档大小</th>
+                                <th width="148">上传者</th>
+                                <th width="168">上传时间</th>
+                                <th width="81">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><i class="iconfont icon-word"></i>安全专项方案.Doc</td>
+                                <td>31.3KB</td>
+                                <td>陈文耀</td>
+                                <td>2021-01-04</td>
+                                <td><i class="iconfont icon-xiazai"></i>&nbsp;&nbsp;&nbsp;<i class="iconfont icon-shanchu"></i></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><i class="iconfont icon-word"></i>安全专项方案.Doc</td>
+                                <td>31.3KB</td>
+                                <td>陈文耀</td>
+                                <td>2021-01-04</td>
+                                <td><i class="iconfont icon-xiazai"></i>&nbsp;&nbsp;&nbsp;<i class="iconfont icon-shanchu"></i></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><i class="iconfont icon-word"></i>安全专项方案.Doc</td>
+                                <td>31.3KB</td>
+                                <td>陈文耀</td>
+                                <td>2021-01-04</td>
+                                <td><i class="iconfont icon-xiazai"></i>&nbsp;&nbsp;&nbsp;<i class="iconfont icon-shanchu"></i></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><i class="iconfont icon-word"></i>安全专项方案.Doc</td>
+                                <td>31.3KB</td>
+                                <td>陈文耀</td>
+                                <td>2021-01-04</td>
+                                <td><i class="iconfont icon-xiazai"></i>&nbsp;&nbsp;&nbsp;<i class="iconfont icon-shanchu"></i></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><i class="iconfont icon-word"></i>安全专项方案.Doc</td>
+                                <td>31.3KB</td>
+                                <td>陈文耀</td>
+                                <td>2021-01-04</td>
+                                <td><i class="iconfont icon-xiazai"></i>&nbsp;&nbsp;&nbsp;<i class="iconfont icon-shanchu"></i></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><i class="iconfont icon-word"></i>安全专项方案.Doc</td>
+                                <td>31.3KB</td>
+                                <td>陈文耀</td>
+                                <td>2021-01-04</td>
+                                <td><i class="iconfont icon-xiazai"></i>&nbsp;&nbsp;&nbsp;<i class="iconfont icon-shanchu"></i></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><i class="iconfont icon-word"></i>安全专项方案.Doc</td>
+                                <td>31.3KB</td>
+                                <td>陈文耀</td>
+                                <td>2021-01-04</td>
+                                <td><i class="iconfont icon-xiazai"></i>&nbsp;&nbsp;&nbsp;<i class="iconfont icon-shanchu"></i></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><i class="iconfont icon-word"></i>安全专项方案.Doc</td>
+                                <td>31.3KB</td>
+                                <td>陈文耀</td>
+                                <td>2021-01-04</td>
+                                <td><i class="iconfont icon-xiazai"></i>&nbsp;&nbsp;&nbsp;<i class="iconfont icon-shanchu"></i></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><i class="iconfont icon-word"></i>安全专项方案.Doc</td>
+                                <td>31.3KB</td>
+                                <td>陈文耀</td>
+                                <td>2021-01-04</td>
+                                <td><i class="iconfont icon-xiazai"></i>&nbsp;&nbsp;&nbsp;<i class="iconfont icon-shanchu"></i></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><i class="iconfont icon-word"></i>安全专项方案.Doc</td>
+                                <td>31.3KB</td>
+                                <td>陈文耀</td>
+                                <td>2021-01-04</td>
+                                <td><i class="iconfont icon-xiazai"></i>&nbsp;&nbsp;&nbsp;<i class="iconfont icon-shanchu"></i></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="zl_footer">
+                            <button class="zl_remove">批量删除</button>
+                            <button class="zl_download">批量下载</button>
+                            <div class="zl_page r">
+                                <a href="#">共12条</a>
+                                <a href="#">首页</a>
+                                <a href="#">上一页</a>
+                                <a href="#" class="active">1</a>
+                                <a href="#">2</a>
+                                <a href="#">3</a>
+                                <a href="#">下一页</a>
+                                <a href="#">尾页</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+        版权所有©xxx有限公司 技术支持：陈乐
+    </footer>
+</body>
+</html>
